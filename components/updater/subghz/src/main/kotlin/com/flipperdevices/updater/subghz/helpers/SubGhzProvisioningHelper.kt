@@ -125,6 +125,7 @@ class SubGhzProvisioningHelperImpl @Inject constructor(
                     RegionProvisioningSource.GEO_IP -> RegionSource.GEO_IP
                     RegionProvisioningSource.SYSTEM -> RegionSource.SYSTEM
                     RegionProvisioningSource.DEFAULT -> RegionSource.DEFAULT
+                    RegionProvisioningSource.UWU -> RegionSource.UWU
                 },
                 isRoaming = regionProvisioning.isRoaming
             )

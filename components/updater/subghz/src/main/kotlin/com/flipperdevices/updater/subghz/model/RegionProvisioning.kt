@@ -32,5 +32,6 @@ enum class RegionProvisioningSource {
     SIM_COUNTRY,
     GEO_IP,
     SYSTEM,
+    UWU,
     DEFAULT
 }

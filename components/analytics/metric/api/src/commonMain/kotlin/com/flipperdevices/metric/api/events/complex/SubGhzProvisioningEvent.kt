@@ -40,5 +40,6 @@ enum class RegionSource(val id: Int) {
     SIM_COUNTRY(id = 1),
     GEO_IP(id = 2),
     SYSTEM(id = 3),
-    DEFAULT(id = 4)
+    DEFAULT(id = 4),
+    UWU(id = 5),
 }

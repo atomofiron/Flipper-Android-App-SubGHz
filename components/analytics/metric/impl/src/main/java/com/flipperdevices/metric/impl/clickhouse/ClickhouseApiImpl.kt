@@ -201,6 +201,8 @@ class ClickhouseApiImpl @Inject constructor(
 
                         RegionSource.DEFAULT ->
                             SubGhzProvisioningOuterClass.SubGhzProvisioning.RegionSource.DEFAULT
+                        RegionSource.UWU ->
+                            SubGhzProvisioningOuterClass.SubGhzProvisioning.RegionSource.DEFAULT
                     }
                 }
             }
