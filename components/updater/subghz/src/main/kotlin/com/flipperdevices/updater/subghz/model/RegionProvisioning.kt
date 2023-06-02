@@ -1,5 +1,7 @@
 package com.flipperdevices.updater.subghz.model
 
+import com.flipperdevices.core.log.WW
+
 private const val COUNTRY_CODE_LENGTH = 2
 
 data class RegionProvisioning(
@@ -10,6 +12,7 @@ data class RegionProvisioning(
     val isRoaming: Boolean
 ) {
     fun provideRegion(): Pair<String?, RegionProvisioningSource?> {
+        if (true) return (WW to RegionProvisioningSource.UWU)
         return if (regionFromNetwork.isOkayRegion()) {
             regionFromNetwork to RegionProvisioningSource.SIM_NETWORK
         } else if (regionFromSim.isOkayRegion() && !isRoaming) {
