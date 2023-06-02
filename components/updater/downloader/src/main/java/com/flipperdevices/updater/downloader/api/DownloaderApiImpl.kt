@@ -2,7 +2,10 @@ package com.flipperdevices.updater.downloader.api
 
 import com.flipperdevices.core.FlipperStorageProvider
 import com.flipperdevices.core.di.AppGraph
+import com.flipperdevices.core.log.DOUBLE_Q
 import com.flipperdevices.core.log.LogTagProvider
+import com.flipperdevices.core.log.WW
+import com.flipperdevices.core.log.ZERO
 import com.flipperdevices.core.log.info
 import com.flipperdevices.core.log.verbose
 import com.flipperdevices.updater.api.DownloadAndUnpackDelegateApi
@@ -15,6 +18,7 @@ import com.flipperdevices.updater.model.DistributionFile
 import com.flipperdevices.updater.model.DownloadProgress
 import com.flipperdevices.updater.model.FirmwareChannel
 import com.flipperdevices.updater.model.FirmwareVersion
+import com.flipperdevices.updater.model.SubGhzProvisioningBand
 import com.flipperdevices.updater.model.SubGhzProvisioningException
 import com.flipperdevices.updater.model.SubGhzProvisioningModel
 import com.flipperdevices.updater.model.VersionFiles
@@ -99,6 +103,27 @@ class DownloaderApiImpl @Inject constructor(
                 "Not found response"
             )
 
+        val pwr = 20
+        val dc = 50u
+        val fullBand = listOf(SubGhzProvisioningBand(start = 0u, end = 1000000000u, maxPower = pwr, dutyCycle = dc))
+        val dataSheetBands = listOf(
+            SubGhzProvisioningBand(start = 300000000u, end = 348000000u, maxPower = pwr, dutyCycle = dc),
+            SubGhzProvisioningBand(start = 387000000u, end = 464000000u, maxPower = pwr, dutyCycle = dc),
+            SubGhzProvisioningBand(start = 779000000u, end = 928000000u, maxPower = pwr, dutyCycle = dc),
+        )
+        val countriesBands = buildMap {
+            successfulResponse.countriesBands.forEach { entry ->
+                this[entry.key.uppercase()] = dataSheetBands
+            }
+            set(WW, dataSheetBands)
+            set(ZERO, fullBand)
+            set(DOUBLE_Q, fullBand)
+        }
+        if (true) return SubGhzProvisioningModel(
+            countries = countriesBands,
+            country = WW,
+            defaults = dataSheetBands,
+        )
         return SubGhzProvisioningModel(
             countries = successfulResponse
                 .countriesBands
