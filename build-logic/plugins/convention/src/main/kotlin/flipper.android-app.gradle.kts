@@ -19,6 +19,16 @@ configure<BaseExtension> {
         applicationId = ApkConfig.APPLICATION_ID
     }
 
+    /*signingConfigs {
+        create("debug") {
+            logger.debug("rootProject ${project.rootProject}")
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }*/
+
     buildTypes {
         internal {
             isShrinkResources = true
@@ -30,6 +40,7 @@ configure<BaseExtension> {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
         release {
             isShrinkResources = true
