@@ -1,10 +1,10 @@
-# About fork
+# About the fork
 <img src='https://github.com/Atomofiron/Flipper-Android-App-SubGHz/blob/region-bands/metadata/flpr-ww.png' width=258 />
 
 Added some custom regions
 
 ```kotlin
-// components/core/log/src/main/java/com/flipperdevices/core/log/Custom.kt
+// components/core/log/src/commonMain/kotlin/com/flipperdevices/core/Custom.kt
 
 // must be 2 characters
 const val ZERO = "00"

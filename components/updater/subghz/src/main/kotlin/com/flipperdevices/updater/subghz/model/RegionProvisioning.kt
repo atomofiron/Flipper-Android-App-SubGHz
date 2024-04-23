@@ -1,6 +1,6 @@
 package com.flipperdevices.updater.subghz.model
 
-import com.flipperdevices.core.log.WW
+import com.flipperdevices.core.WW
 
 private const val COUNTRY_CODE_LENGTH = 2
 
